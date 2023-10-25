@@ -6,8 +6,8 @@ ___________
 
 The code in this toolbox implements the ["Cross-City Matters: A Multimodal Remote Sensing Benchmark Dataset for Cross-City Semantic Segmentation using High-Resolution Domain Adaptation Networks"](https://arxiv.org/abs/2309.16499). More specifically, it is detailed as follows.
 
-![alt text](./AB1.jpg)
-![alt text](./BW1.jpg)
+![alt text](./AB1.png)
+![alt text](./BW1.png)
 A new set of multimodal RS benchmark datasets (C2Seg) is built for the study purpose of the cross-city semantic segmentation task.
 
 ![alt text](./Workflow_RSE.jpg)
