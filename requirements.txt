@@ -1,0 +1,11 @@
+h5py==3.10.0
+imgaug==0.4.0
+matplotlib==3.3.4
+numpy==1.13.3
+pandas==1.1.5
+Pillow==10.1.0
+scikit_learn==1.3.2
+scipy==1.5.4
+skimage==0.0
+slidingwindow==0.0.14
+torch==2.1.0
