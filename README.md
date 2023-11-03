@@ -4,7 +4,7 @@ Danfeng Hong, Bing Zhang, Hao Li, Yuxuan Li, Jing Yao, Chenyu Li, Martin Werner,
 
 ___________
 
-The code in this toolbox implements the ["Cross-City Matters: A Multimodal Remote Sensing Benchmark Dataset for Cross-City Semantic Segmentation using High-Resolution Domain Adaptation Networks"](https://arxiv.org/abs/2309.16499). More specifically, it is detailed as follows.
+The code in this toolbox implements the ["Cross-City Matters: A Multimodal Remote Sensing Benchmark Dataset for Cross-City Semantic Segmentation using High-Resolution Domain Adaptation Networks"](https://www.sciencedirect.com/science/article/abs/pii/S0034425723004078). More specifically, it is detailed as follows.
 
 ![alt text](./AB1.png)
 ![alt text](./BW1.png)
