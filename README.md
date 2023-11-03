@@ -1,6 +1,6 @@
 # Cross-City Matters: A Multimodal Remote Sensing Benchmark Dataset for Cross-City Semantic Segmentation using High-Resolution Domain Adaptation Networks
 
-Danfeng Hong, Bing Zhang, Hao Li, Zhu Han, Jing Yao, Chenyu Li, Martin Werner, Jocelyn Chanussot, Alexander Zipf, Xiao Xiang Zhu
+Danfeng Hong, Bing Zhang, Hao Li, Yuxuan Li, Jing Yao, Chenyu Li, Martin Werner, Jocelyn Chanussot, Alexander Zipf, Xiao Xiang Zhu
 
 ___________
 
@@ -18,7 +18,7 @@ Citation
 
 **Please kindly cite the papers if this code is useful and helpful for your research.**
 
-Danfeng Hong, Bing Zhang, Hao Li, Zhu Han, Jing Yao, Chenyu Li, Martin Werner, Jocelyn Chanussot, Alexander Zipf, Xiao Xiang Zhu. Cross-City Matters: A Multimodal Remote Sensing Benchmark Dataset for Cross-City Semantic Segmentation using High-Resolution Domain Adaptation Networks. Remote Sensing of Environment, 2023. 
+Danfeng Hong, Bing Zhang, Hao Li, Yuxuan Li, Jing Yao, Chenyu Li, Martin Werner, Jocelyn Chanussot, Alexander Zipf, Xiao Xiang Zhu. Cross-City Matters: A Multimodal Remote Sensing Benchmark Dataset for Cross-City Semantic Segmentation using High-Resolution Domain Adaptation Networks. Remote Sensing of Environment, 2023. 
 
      @article{hong2023cross,
      title={Cross-City Matters: A Multimodal Remote Sensing Benchmark Dataset for Cross-City Semantic Segmentation using High-Resolution Domain Adaptation Networks},
