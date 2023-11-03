@@ -23,7 +23,9 @@ Danfeng Hong, Bing Zhang, Hao Li, Yuxuan Li, Jing Yao, Chenyu Li, Martin Werner,
      @article{hong2023cross,
      title={Cross-City Matters: A Multimodal Remote Sensing Benchmark Dataset for Cross-City Semantic Segmentation using High-Resolution Domain Adaptation Networks},
      author={Hong, Danfeng and Zhang, Bing and Li, Hao and Li, Yuxuan and Yao, Jing and Li, Chenyu and Werner, Martin and Chanussote, Jocelyn and Zipf, Alexander and Zhu, Xiao Xiang},
-     journal={arXiv preprint arXiv:2309.16499},
+     journal={Remote Sensing of Environment},
+     volume={299},
+     pages={113856},
      year={2023}
      }
 
