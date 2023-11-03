@@ -4,11 +4,11 @@ Danfeng Hong, Bing Zhang, Hao Li, Yuxuan Li, Jing Yao, Chenyu Li, Martin Werner,
 
 ___________
 
-The code in this toolbox implements the ["Cross-City Matters: A Multimodal Remote Sensing Benchmark Dataset for Cross-City Semantic Segmentation using High-Resolution Domain Adaptation Networks"](https://www.sciencedirect.com/science/article/abs/pii/S0034425723004078). More specifically, it is detailed as follows.
+The code in this toolbox implements the ["Cross-City Matters: A Multimodal Remote Sensing Benchmark Dataset for Cross-City Semantic Segmentation using High-Resolution Domain Adaptation Networks"](https://www.sciencedirect.com/science/article/abs/pii/S0034425723004078). A new set of multimodal RS benchmark datasets (C2Seg) is built for the study purpose of the cross-city semantic segmentation task. The C2Seg datasets can also be used for organizing the ["WHISPERS2023 Challenge 1: CROSS-CITY MULTIMODAL SEMANTIC SEGMENTATION CHALLENGE"] (https://www.ieee-whispers.com/cross-city-challenge/).
 
 ![alt text](./AB1.png)
 ![alt text](./BW1.png)
-A new set of multimodal RS benchmark datasets (C2Seg) is built for the study purpose of the cross-city semantic segmentation task.
+
 
 ![alt text](./Workflow_RSE.jpg)
 A high-resolution domain adaptation network utilizing adversarial learning (HighDAN) is devised to tackle this task.
