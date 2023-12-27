@@ -20,9 +20,9 @@ import shutil
 
 parser = argparse.ArgumentParser(description='Multimodal Segmentation')
 # parser.add_argument('--fix_random', action='store_true', help='fix randomness')
-parser.add_argument('--fix_random', default=True, help='fix randomness')
+parser.add_argument('--fix_random', default=False, help='fix randomness')
 parser.add_argument('--seed', default=0, type=int, help='random seed')
-parser.add_argument('--gpu_id', default='5', help='gpu id')
+parser.add_argument('--gpu_id', default='7', help='gpu id')
 # a 6000 beijing 1000
 parser.add_argument('--epoch', default=10000, type=int, help='number of epoch')
 parser.add_argument('--loop_epoch', default=1, type=int, help='number of epochs per validate')
@@ -37,8 +37,10 @@ parser.add_argument('--dataset', choices=['augsburg', 'beijing'], default='beiji
 parser.add_argument('--pca_flag', default=True, type=bool, help='weather use PCA dimension reduction on dataset')  # 10
 parser.add_argument('--band_norm_flag', default=True, help='normalization by band')
 parser.add_argument('--backbone_flag', default=True, help='use_backbone_pretrain')
+parser.add_argument('--AB_backbone_flag', default=True, help='use_AB_best_model_as_backbone_pretrain')
 parser.add_argument('--aug_flag', default=True, help='use_augment')
 parser.add_argument('--backbone_path', default='./pretrain/hrnetv2_w48_imagenet_pretrained.pth', help='use_backbone')
+parser.add_argument('--AB_best_model_path', default='./pretrain/AB_best_model.pth', help='use_backbone')
 # loss
 parser.add_argument('--add_dice', default=True, type=bool, help='loss func')
 # optimizer parameters
@@ -93,47 +95,55 @@ def main():
     # create model
     model = HighResolutionNet(band, num_classes).cuda()
     if args.backbone_flag:
-        saved_state_dict = torch.load(args.backbone_path)
-        model_dict = model.state_dict()
-        for k, v in list(saved_state_dict.items()):
-            if k == 'conv1.weight':
-                saved_state_dict.pop(k)
-            if k == 'conv1.bias':
-                saved_state_dict.pop(k)
-            if k == 'bn1.weight':
-                saved_state_dict.pop(k)
-            if k == 'bn1.bias':
-                saved_state_dict.pop(k)
-            if k == 'bn1.running_mean':
-                saved_state_dict.pop(k)
-            if k == 'bn1.running_var':
-                saved_state_dict.pop(k)
-            if k == 'bn1.num_batches_tracked':
-                saved_state_dict.pop(k)
-            if k == 'conv2.weight':
-                saved_state_dict.pop(k)
-            if k == 'conv2.bias':
-                saved_state_dict.pop(k)
-            if k == 'bn2.weight':
-                saved_state_dict.pop(k)
-            if k == 'bn2.bias':
-                saved_state_dict.pop(k)
-            if k == 'bn2.running_mean':
-                saved_state_dict.pop(k)
-            if k == 'bn2.running_var':
-                saved_state_dict.pop(k)
-            if k == 'bn2.num_batches_tracked':
-                saved_state_dict.pop(k)
-            if str.find(k, 'last_layer') != -1:
-                saved_state_dict.pop(k)
-        saved_state_dict = {k: v for k, v in saved_state_dict.items()
-                            if k in model_dict.keys()}
-        model_dict.update(saved_state_dict)
-        misskey, _ = model.load_state_dict(model_dict, strict=False)
-        layer1 = model.layer1.state_dict()
-        model.msi_layer1.load_state_dict(layer1)
-        model.sar_layer1.load_state_dict(layer1)
-        print("load pretrained backbone")
+        if args.AB_backbone_flag:
+            model_snapshot_path = os.path.join(args.AB_best_model_path)
+            saved_state_dict = torch.load(model_snapshot_path)
+            model_dict = model.state_dict()
+            model_dict.update(saved_state_dict)
+            model.load_state_dict(model_dict, strict=False)
+            print("load AB_best_model as pretrained backbone")
+        else:
+            saved_state_dict = torch.load(args.backbone_path)
+            model_dict = model.state_dict()
+            for k, v in list(saved_state_dict.items()):
+                if k == 'conv1.weight':
+                    saved_state_dict.pop(k)
+                if k == 'conv1.bias':
+                    saved_state_dict.pop(k)
+                if k == 'bn1.weight':
+                    saved_state_dict.pop(k)
+                if k == 'bn1.bias':
+                    saved_state_dict.pop(k)
+                if k == 'bn1.running_mean':
+                    saved_state_dict.pop(k)
+                if k == 'bn1.running_var':
+                    saved_state_dict.pop(k)
+                if k == 'bn1.num_batches_tracked':
+                    saved_state_dict.pop(k)
+                if k == 'conv2.weight':
+                    saved_state_dict.pop(k)
+                if k == 'conv2.bias':
+                    saved_state_dict.pop(k)
+                if k == 'bn2.weight':
+                    saved_state_dict.pop(k)
+                if k == 'bn2.bias':
+                    saved_state_dict.pop(k)
+                if k == 'bn2.running_mean':
+                    saved_state_dict.pop(k)
+                if k == 'bn2.running_var':
+                    saved_state_dict.pop(k)
+                if k == 'bn2.num_batches_tracked':
+                    saved_state_dict.pop(k)
+                if str.find(k, 'last_layer') != -1:
+                    saved_state_dict.pop(k)
+            saved_state_dict = {k: v for k, v in saved_state_dict.items()
+                                if k in model_dict.keys()}
+            model_dict.update(saved_state_dict)
+            misskey, _ = model.load_state_dict(model_dict, strict=False)
+            layer1 = model.layer1.state_dict()
+            model.msi_layer1.load_state_dict(layer1)
+            model.sar_layer1.load_state_dict(layer1)
+            print("load pretrained backbone")
     optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate, weight_decay=args.weight_decay)
 
     # discriminator attention module
